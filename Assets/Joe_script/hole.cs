@@ -52,5 +52,6 @@ public class hole : MonoBehaviour {
         {
             B += color.b;
         }
+        GameObject.Destroy( other.gameObject );
 	}
 }

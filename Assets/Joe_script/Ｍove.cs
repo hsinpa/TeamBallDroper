@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ｍove : MonoBehaviour {
-    int num = 1;
+    public int num = 1;
     Rigidbody rb;
     bool take;
     public float moveSpeed=5;
@@ -40,14 +40,17 @@ public class Ｍove : MonoBehaviour {
 
         if(Input.GetButtonDown("joystick"+num+"Fire")){
             if(take){
+                target.GetComponent<Collider>().enabled = true;
                 target.isKinematic = false;
                 target.transform.parent = null;
-                target.AddForce(transform.forward*throwSpeed);
+                target.AddForce((transform.forward+transform.up)*throwSpeed);
                 take = false;
             }else{
                 if (target)
                 {
                     take = true;
+                    target.GetComponent<Collider>().enabled = false;
+                    target.transform.position = ahand.transform.position; 
                     target.transform.parent = transform;
                     target.isKinematic = true;
                 }

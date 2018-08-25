@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BallAllocator : MonoBehaviour {
 	public Ball_STP ballStp;
-
+	private List<GameObject> ballstats = new List<GameObject>();
 	#region Inspector parameter
 		public Transform playgroundHolder;
 		public Transform goalColorObject;
@@ -35,7 +35,24 @@ public class BallAllocator : MonoBehaviour {
 			GenerateBallInGroup();
 			//ReleaseBall(true);
 		}
+
+		RemoveNotNecessaryBall();
 	}
+
+	private void RemoveNotNecessaryBall() {
+		int ballcount = ballstats.Count;
+		for(int i = ballcount -1; i >= 0; i--) {
+			if (ballstats[i] == null) {
+				ballstats.RemoveAt(i);
+				return;
+			}
+			if (ballstats[i].transform.position.y < playgroundHolder.transform.position.y - 45) {
+				GameObject.Destroy( ballstats[i].gameObject ); 
+				ballstats.RemoveAt(i);
+			}
+		}
+	}
+
 	public void SetTargetGoalBall() {
 		targetColor = GetRandomColor();
 		Material targetBallMaterial = goalColorObject.GetComponent<MeshRenderer>().material;
@@ -71,6 +88,9 @@ public class BallAllocator : MonoBehaviour {
 		gMaterial.SetColor("_EmissionColor", blendColor);
 		gObject.GetComponent<BallStat>().color = blendColor;
 		reshRenderer.material = gMaterial;
+
+		ballstats.Add(gObject);
+
 		return gObject;
 	}
 

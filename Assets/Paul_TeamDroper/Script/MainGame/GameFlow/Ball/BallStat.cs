@@ -15,4 +15,6 @@ public class BallStat : MonoBehaviour {
 	}
 
 	private Color _color;
+
+	
 }
