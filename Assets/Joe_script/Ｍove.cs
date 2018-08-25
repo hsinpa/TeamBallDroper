@@ -20,7 +20,12 @@ public class Ｍove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        target = ahand.rb;
+        if (take)
+        { 
+        }else{
+            target = ahand.rb;
+        }
+
 
         float x = Input.GetAxis("joystick" + num + "moveX")*-1;
         float y = Input.GetAxis("joystick" + num + "moveY")*-1;

@@ -7,8 +7,8 @@ public class TeamDroperManager : MonoBehaviour {
 
 	#region MainConnector
 		public BallAllocator _ballAllocator;
-		ScoreHandler _scoreHandler;
-		TeamHolder _teamHolder;
+		public ScoreHandler _scoreHandler;
+		public TeamHolder _teamHolder;
 	#endregion
 
 	#region Public Parameter
@@ -40,10 +40,13 @@ public class TeamDroperManager : MonoBehaviour {
 
 		//Set team Hard code
 		for(int i = 0; i < Holes.Length; i++) {
-			Holes[i].team = new TeamHolder.Team(Holes[i].name, new GameObject[] {
-				teamHolder.GetChild((i*2)).gameObject, 
-				teamHolder.GetChild( (i*2) + 1).gameObject
-			} );
+			Holes[i].team = new TeamHolder.Team(Holes[i].name.Substring(Holes[i].name.Length-1, 1),
+				 new GameObject[] {
+				// teamHolder.GetChild((i*2)).gameObject, 
+				// teamHolder.GetChild( (i*2) + 1).gameObject
+			}, Holes[i].teamColor );
+
+
 		}
 
 		GameStart();
@@ -51,18 +54,28 @@ public class TeamDroperManager : MonoBehaviour {
 
 	private void GameStart() {
 		_ballAllocator.SetUp(this);
+		_scoreHandler.SetUp(Time.time, 120);
 
+		for(int i = 0; i < Holes.Length; i++) {
+			_scoreHandler.SetScoreToUI(Holes[i].team, 0, false);
+		}
 		_gameState = GameState.Start;
 	}
 
-	public void AddScore(TeamHolder.Team p_team, float p_score) {
+	public void GameOver(string p_end_game_message) {
+		_gameState = GameState.End;
+		Debug.Log("Game Over");
+	}
+
+	public void AddScore(TeamHolder.Team p_team, int p_score) {
+		if (_gameState != GameState.Start) return;
 		_ballAllocator.SetTargetGoalBall();
-		// ScoreHandler(;)
+		_scoreHandler.SetScoreToUI(p_team, p_score, true);
 	}
 
 	private void Update() {
 		if (Input.GetKey(KeyCode.Space)) 
-			AddScore(null, 33);
+			AddScore(Holes[0].team, 1);
 	}
 
 }

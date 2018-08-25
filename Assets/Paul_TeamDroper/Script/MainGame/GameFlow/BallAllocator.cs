@@ -59,7 +59,7 @@ public class BallAllocator : MonoBehaviour {
 		//Assign Random position
 		Vector3 boundSize = reshRenderer.bounds.size;
 		float yPos = p_index * gObject.transform.localScale.y + (playgroundHolder.position.y *0.9f);
-		float xzOffSet = boundSize.x * 1.5f;
+		float xzOffSet = boundSize.x * 1.1f;
 		float xPos = Random.Range(playgroundHolder.transform.position.x + xzOffSet,  playgroundHolder.transform.position.x - xzOffSet ),
 			zPos = Random.Range(playgroundHolder.transform.position.z + xzOffSet,  playgroundHolder.transform.position.z - xzOffSet );
 		
@@ -67,7 +67,7 @@ public class BallAllocator : MonoBehaviour {
 		gObject.transform.position = new Vector3(xPos, yPos, zPos);
 		// gObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 		//End 
-
+		gObject.GetComponent<Rigidbody>().AddForce(Vector3.down);
 		gMaterial.SetColor("_EmissionColor", blendColor);
 		gObject.GetComponent<BallStat>().color = blendColor;
 		reshRenderer.material = gMaterial;
@@ -75,9 +75,10 @@ public class BallAllocator : MonoBehaviour {
 	}
 
 	private Color GetRandomColor() {
-		Color randomColorA = ballStp.baseColors[Random.Range(0, ballStp.baseColors.Length)],
-				randomColorB = ballStp.baseColors[Random.Range(0, ballStp.baseColors.Length)];
-		return BlendColor(randomColorA, randomColorB);
+		Color randomColorA = ballStp.baseColors[Random.Range(0, ballStp.baseColors.Length)];
+		return randomColorA;
+		// 		randomColorB = ballStp.baseColors[Random.Range(0, ballStp.baseColors.Length)];
+		// return BlendColor(randomColorA, randomColorB);
 	}
 
 	private Color32 BlendColor(Color a, Color b) {

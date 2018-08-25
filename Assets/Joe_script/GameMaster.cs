@@ -32,8 +32,11 @@ public class GameMaster : MonoBehaviour {
     void chack(hole p_hole){
         if (p_hole.newcolor == target)
         {
+            // Debug.Log(p_hole.team._id);
             // p_hole.fraction += 1;
-            teamDroperManager.AddScore( p_hole.team, 1 );
+            if (p_hole.team != null)
+                teamDroperManager.AddScore( p_hole.team, 1 );
+
             // Changed();
             if(p_hole.fraction>=Maxfraction){
                 vt.Invoke();
