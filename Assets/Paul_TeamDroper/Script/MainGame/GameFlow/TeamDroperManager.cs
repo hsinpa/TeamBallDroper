@@ -6,7 +6,7 @@ public class TeamDroperManager : MonoBehaviour {
 	static TeamDroperManager _instance;
 
 	#region MainConnector
-		BallAllocator _ballAllocator;
+		public BallAllocator _ballAllocator;
 		ScoreHandler _scoreHandler;
 		TeamHolder _teamHolder;
 	#endregion
@@ -18,6 +18,9 @@ public class TeamDroperManager : MonoBehaviour {
 			End
 		}
 		public GameState _gameState;
+
+		public hole[] Holes;
+		public Transform teamHolder;
 	#endregion
 
 	public static TeamDroperManager instance {
@@ -35,6 +38,14 @@ public class TeamDroperManager : MonoBehaviour {
 		_scoreHandler = transform.Find("game_flow/main").GetComponent<ScoreHandler>();
 		_teamHolder = transform.Find("game_flow/main").GetComponent<TeamHolder>();
 
+		//Set team Hard code
+		for(int i = 0; i < Holes.Length; i++) {
+			Holes[i].team = new TeamHolder.Team(Holes[i].name, new GameObject[] {
+				teamHolder.GetChild((i*2)).gameObject, 
+				teamHolder.GetChild( (i*2) + 1).gameObject
+			} );
+		}
+
 		GameStart();
 	}
 
@@ -45,9 +56,8 @@ public class TeamDroperManager : MonoBehaviour {
 	}
 
 	public void AddScore(TeamHolder.Team p_team, float p_score) {
-
 		_ballAllocator.SetTargetGoalBall();
-
+		// ScoreHandler(;)
 	}
 
 	private void Update() {

@@ -14,6 +14,7 @@ public class BallAllocator : MonoBehaviour {
 	private float _gatePeriodTime = 0;
 
 	private TeamDroperManager teamDroper;
+	public Color targetColor;
 
 	public void SetUp(TeamDroperManager p_teamDroper) {
 		teamDroper = p_teamDroper;
@@ -36,9 +37,9 @@ public class BallAllocator : MonoBehaviour {
 		}
 	}
 	public void SetTargetGoalBall() {
-		Color randomColor = GetRandomColor();
+		targetColor = GetRandomColor();
 		Material targetBallMaterial = goalColorObject.GetComponent<MeshRenderer>().material;
-		targetBallMaterial.SetColor("_EmissionColor", randomColor);
+		targetBallMaterial.SetColor("_EmissionColor", targetColor);
 	}
 
 	private void GenerateBallInGroup() {

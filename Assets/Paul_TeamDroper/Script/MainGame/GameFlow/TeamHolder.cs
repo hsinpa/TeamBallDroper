@@ -15,7 +15,12 @@ public class TeamHolder : MonoBehaviour {
 
 	public class Team {
 		public string _id;
-		public Player[] players;
+		public GameObject[] players;
+
+		public Team(string pID, GameObject[] p_players) {
+			_id = pID;
+			players = p_players;
+		}
 	}
 
 	public class Player {
