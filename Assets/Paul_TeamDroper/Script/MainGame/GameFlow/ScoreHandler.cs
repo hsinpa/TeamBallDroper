@@ -45,10 +45,19 @@ public class ScoreHandler : MonoBehaviour {
 
 	void Update() {
 		if (startTime < 0) return; 
-		if (timeLeave < 0) {
+		if (timeLeave < 0 && TeamDroperManager.instance._gameState == TeamDroperManager.GameState.Start) {
 			TeamHolder.Team highestTeam = TeamDroperManager.instance._teamHolder.FindHighestTeam();
 			TeamDroperManager.instance.GameOver("Time ups" +", Team " + highestTeam._id +" Win!!");
 			return;
+		}
+
+		if (timeLeave < 0 && TeamDroperManager.instance._gameState == TeamDroperManager.GameState.PickTeam) {
+			TeamDroperManager.instance._camera._zoomState = CameraManager.ZoomState.ZoomOut;
+			
+			//Pick team time end
+			SetUp(Time.time, 120);
+			TeamDroperManager.instance._gameState = TeamDroperManager.GameState.Start;
+			TeamDroperManager.instance._teamHolder.SetUp();
 		}
 
 		UpdateTimer();

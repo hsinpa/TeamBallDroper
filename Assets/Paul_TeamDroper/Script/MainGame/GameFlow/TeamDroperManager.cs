@@ -9,11 +9,13 @@ public class TeamDroperManager : MonoBehaviour {
 		public BallAllocator _ballAllocator;
 		public ScoreHandler _scoreHandler;
 		public TeamHolder _teamHolder;
+		public CameraManager _camera;
 	#endregion
 
 	#region Public Parameter
 		public enum GameState {
 			Prepare,
+			PickTeam,
 			Start,
 			End
 		}
@@ -21,6 +23,8 @@ public class TeamDroperManager : MonoBehaviour {
 
 		public hole[] Holes;
 		public Transform teamHolder;
+		public CanvasGroup endgameUI;
+
 	#endregion
 
 	public static TeamDroperManager instance {
@@ -49,21 +53,31 @@ public class TeamDroperManager : MonoBehaviour {
 
 		}
 
+		//Set Camera ZoomInPosition
+		_camera.SetUp(155, 13);
 		GameStart();
 	}
 
 	private void GameStart() {
+		_gameState = GameState.PickTeam;
+	
 		_ballAllocator.SetUp(this);
-		_scoreHandler.SetUp(Time.time, 120);
+		_scoreHandler.SetUp(Time.time, 6);
+		_teamHolder.SetUp();
 
 		for(int i = 0; i < Holes.Length; i++) {
 			_scoreHandler.SetScoreToUI(Holes[i].team, 0, false);
 		}
-		_gameState = GameState.Start;
+
+		CanvasGroupSwitcher(endgameUI, false);
+		_camera._zoomState = CameraManager.ZoomState.ZoomIn;
 	}
 
 	public void GameOver(string p_end_game_message) {
 		_gameState = GameState.End;
+
+		endgameUI.transform.Find("field").GetComponent<UnityEngine.UI.Text>().text = p_end_game_message;
+		CanvasGroupSwitcher(endgameUI, true);
 		Debug.Log("Game Over");
 	}
 
@@ -74,8 +88,15 @@ public class TeamDroperManager : MonoBehaviour {
 	}
 
 	private void Update() {
-		if (Input.GetKey(KeyCode.Space)) 
-			AddScore(Holes[0].team, 1);
+		if (Input.GetKeyDown(KeyCode.Space))  {
+			_camera._zoomState = (_camera._zoomState == CameraManager.ZoomState.ZoomOut) ? CameraManager.ZoomState.ZoomIn : CameraManager.ZoomState.ZoomOut;
+		}
+	}
+
+	private void CanvasGroupSwitcher(CanvasGroup p_canvasgroup, bool isEnable ) {
+		p_canvasgroup.alpha = (isEnable) ? 1 : 0;
+		p_canvasgroup.blocksRaycasts = isEnable;
+		p_canvasgroup.interactable = isEnable;
 	}
 
 }

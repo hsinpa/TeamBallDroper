@@ -4,10 +4,16 @@ using UnityEngine;
 using System.Linq;
 
 public class TeamHolder : MonoBehaviour {
+	[SerializeField]
 	List<Team> teams = new List<Team>();
 
-	void SetUp(List<Team> p_teams) {
-		teams = p_teams;
+	[SerializeField]
+	FloorDetector[] _floorDetector;
+
+	public void SetUp() {
+		for(int i = 0; i < _floorDetector.Length; i++) {
+			_floorDetector[i].RenewFloorColor();
+		}
 	}
 
 	public Team FindTeam(Player p_player) {
@@ -20,7 +26,15 @@ public class TeamHolder : MonoBehaviour {
 		List<Team> sortTeam = teams.OrderByDescending(x=>x.score).ToList();
 		return sortTeam[0];
 	}
+
 	
+	// Update is called once per frame
+	void Update () {
+		if (TeamDroperManager.instance._gameState == TeamDroperManager.GameState.PickTeam) {
+			
+		}
+	}
+
 
 	public class Team {
 		public string _id;
