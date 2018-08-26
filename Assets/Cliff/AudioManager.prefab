@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1439364206083168}
+  m_IsPrefabParent: 1
+--- !u!1 &1439364206083168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4467316403553228}
+  - component: {fileID: 114460028979356382}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4467316403553228
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1439364206083168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114460028979356382
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1439364206083168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a11ba997ea80994b82d4b9b600d9782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioGroup: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: 3c48da49e88e6964e945d2d8751688d2, type: 3}
+  - {fileID: 8300000, guid: 0997a8537d5893843be1f3e3d1ad77ed, type: 3}
+  - {fileID: 8300000, guid: 55056b3843e75cc488730c4483e5d37a, type: 3}
+  - {fileID: 8300000, guid: 322920ff8b606eb47bfb28dea306b6ed, type: 3}
+  - {fileID: 8300000, guid: 6f3ab2fc097b588418e84c6cf7f25c90, type: 3}
+  - {fileID: 8300000, guid: db30ea899865e0348ab6b79954bdf00c, type: 3}
+  - {fileID: 8300000, guid: 76d9584d596763d47ad601196f42d79e, type: 3}
+  - {fileID: 8300000, guid: 855defc1d29878244abd66f0fa595e78, type: 3}
+  - {fileID: 8300000, guid: 5a6bc55cc40655e4ea5de46259a604f6, type: 3}
+  pooledSources: []
+  pooledAmount: 10
+  lowPitchRange: 0.95
+  highPitchRange: 1.05
+  canGrow: 1

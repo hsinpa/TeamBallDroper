@@ -12,12 +12,15 @@ namespace CliffLeeCL
         public enum AudioName
         {
             ButtonClicked,
-            EnemyDead1,
-            EnemyDead2,
-            EnemyDead3,
-            EnemySlash,
-            Fail,
-            Pass
+            ColorCorrect,
+            DropItem,
+            Drum,
+            Footstep,
+            Laugh,
+            PickUp,
+            RockMultiple,
+            RockSingle,
+            Splash
         }
 
         public AudioMixerGroup audioGroup;
