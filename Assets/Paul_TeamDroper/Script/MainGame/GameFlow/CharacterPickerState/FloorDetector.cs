@@ -6,7 +6,7 @@ public class FloorDetector : MonoBehaviour {
 	public hole _hole;
 	private Material material;
 
-	void Start() {
+	void Awake() {
 		material = new Material(GetComponent<MeshRenderer>().material);
 		GetComponent<MeshRenderer>().material= material;
 	}
