@@ -34,7 +34,6 @@ public class BallAllocator : MonoBehaviour {
 		if (Time.time > _gatePeriodTime) {
 			_gatePeriodTime = Time.time + gate_open_period;
 			GenerateBallInGroup();
-			Debug.Log("sound check");
 			AudioManager.Instance.PlaySound(AudioManager.AudioName.RockMultiple, 1);
 
 			//ReleaseBall(true);
