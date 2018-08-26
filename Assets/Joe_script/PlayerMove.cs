@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Ｍove : MonoBehaviour {
+public class PlayerMove : MonoBehaviour {
     public int num = 1;
     Rigidbody rb;
     bool take;
@@ -13,9 +14,12 @@ public class Ｍove : MonoBehaviour {
     public float throwSpeed = 100;
 
     public hand ahand;
+
+    public UnityEvent throwSroud;
 	// Use this for initialization
 	void Start () {
         ahand = GetComponentInChildren<hand>();
+        rb = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -33,7 +37,8 @@ public class Ｍove : MonoBehaviour {
         {
             
             transform.rotation = Quaternion.LookRotation(new Vector3(x, 0, y));
-            transform.position += new Vector3(x, 0, y) * Time.deltaTime*moveSpeed;
+            //transform.position += new Vector3(x, 0, y) * Time.deltaTime*moveSpeed;
+            rb.velocity = new Vector3(x, 0, y) * Time.deltaTime * moveSpeed;
         }
 
 
