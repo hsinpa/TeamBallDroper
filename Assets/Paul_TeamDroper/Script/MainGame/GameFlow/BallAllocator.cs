@@ -54,7 +54,7 @@ public class BallAllocator : MonoBehaviour {
 	}
 
 	public void SetTargetGoalBall() {
-		targetColor = GetRandomColor();
+		targetColor = GetRandomColor(true);
 		Material targetBallMaterial = goalColorObject.GetComponent<MeshRenderer>().material;
 		targetBallMaterial.SetColor("_EmissionColor", targetColor);
 	}
@@ -67,7 +67,7 @@ public class BallAllocator : MonoBehaviour {
 	}
 
 	private GameObject GenerateBallPerTime(int p_index) {
-		Color blendColor = GetRandomColor();
+		Color blendColor = GetRandomColor(false);
 		
 		GameObject gObject = Instantiate(ballStp.generalPrefab);
 		Material gMaterial = new Material(ballStp.generalMaterial);
@@ -94,14 +94,13 @@ public class BallAllocator : MonoBehaviour {
 		return gObject;
 	}
 
-	private Color GetRandomColor() {
-		Color randomColorA = ballStp.baseColors[Random.Range(0, ballStp.baseColors.Length)];
-		return randomColorA;
-		// 		randomColorB = ballStp.baseColors[Random.Range(0, ballStp.baseColors.Length)];
-		// return BlendColor(randomColorA, randomColorB);
+	private Color GetRandomColor(bool blendColor) {
+		Color randomColorA = ballStp.baseColors[Random.Range(0, ballStp.baseColors.Length)],
+				randomColorB = ballStp.baseColors[Random.Range(0, ballStp.baseColors.Length)];
+		return (blendColor) ? BlendColor(randomColorA, randomColorB) : randomColorA;
 	}
 
-	private Color32 BlendColor(Color a, Color b) {
+	private Color BlendColor(Color a, Color b) {
 		return (a + b) / 2;
 	}
 

@@ -22,7 +22,7 @@ public class TeamDroperManager : MonoBehaviour {
 		public GameState _gameState;
 
 		public hole[] Holes;
-		public Transform teamHolder;
+		public Transform teamHolderTransform;
 		public CanvasGroup endgameUI;
 
 	#endregion
@@ -58,12 +58,13 @@ public class TeamDroperManager : MonoBehaviour {
 		GameStart();
 	}
 
-	private void GameStart() {
+	public void GameStart() {
 		_gameState = GameState.PickTeam;
 	
 		_ballAllocator.SetUp(this);
-		_scoreHandler.SetUp(Time.time, 6);
-		_teamHolder.SetUp();
+		_scoreHandler.SetUp(Time.time, 5);
+		_teamHolder.SetUp(teamHolderTransform);
+
 
 		for(int i = 0; i < Holes.Length; i++) {
 			_scoreHandler.SetScoreToUI(Holes[i].team, 0, false);
@@ -78,7 +79,6 @@ public class TeamDroperManager : MonoBehaviour {
 
 		endgameUI.transform.Find("field").GetComponent<UnityEngine.UI.Text>().text = p_end_game_message;
 		CanvasGroupSwitcher(endgameUI, true);
-		Debug.Log("Game Over");
 	}
 
 	public void AddScore(TeamHolder.Team p_team, int p_score) {
@@ -89,7 +89,7 @@ public class TeamDroperManager : MonoBehaviour {
 
 	private void Update() {
 		if (Input.GetKeyDown(KeyCode.Space))  {
-			GameStart();
+			GameOver("HELLO WORLD");
 			// _camera._zoomState = (_camera._zoomState == CameraManager.ZoomState.ZoomOut) ? CameraManager.ZoomState.ZoomIn : CameraManager.ZoomState.ZoomOut;
 		}
 	}
