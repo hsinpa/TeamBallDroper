@@ -14,16 +14,20 @@ public class hole : MonoBehaviour {
     public float G;
     public float B;
     public MeshRenderer meshRenderer;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+
+    public Transform particleTransform;
+
+
 	// Update is called once per frame
 	void Update () {
         newcolor = new Color(R, G, B, 1);
         meshRenderer.material.SetColor("_EmissionColor",newcolor);
 	}
+
+    public void EnableParticle(bool isEnable) {
+        if (particleTransform !=null)
+            particleTransform.gameObject.SetActive(isEnable);
+    }
 
 	private void OnTriggerEnter(Collider other)
 	{

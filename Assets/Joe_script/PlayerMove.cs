@@ -40,7 +40,7 @@ public class PlayerMove : MonoBehaviour {
             transform.rotation = Quaternion.LookRotation(new Vector3(x, 0, y));
             //transform.position += new Vector3(x, 0, y) * Time.deltaTime*moveSpeed;
             rb.velocity = new Vector3(x, 0, y) * Time.deltaTime * moveSpeed;
-            AudioManager.Instance.PlaySound(AudioManager.AudioName.Footstep, 0.2f);
+            // AudioManager.Instance.PlaySound(AudioManager.AudioName.Footstep, 0.2f);
 
         }
 

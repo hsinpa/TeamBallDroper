@@ -105,7 +105,7 @@ public class BallAllocator : MonoBehaviour {
 	}
 
 	private Color BlendColor(Color a, Color b) {
-		return (a + b) / 2;
+		return (a + b);
 	}
 
 	private void Clear() {

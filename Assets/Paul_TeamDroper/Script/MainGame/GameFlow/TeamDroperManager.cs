@@ -68,18 +68,32 @@ public class TeamDroperManager : MonoBehaviour {
 
 		for(int i = 0; i < Holes.Length; i++) {
 			_scoreHandler.SetScoreToUI(Holes[i].team, 0, false);
+			Holes[i].EnableParticle(false);
 		}
 
 		CanvasGroupSwitcher(endgameUI, false);
 		_camera._zoomState = CameraManager.ZoomState.ZoomIn;
 	}
 
-	public void GameOver(string p_end_game_message) {
+	public void GameOver(string p_end_game_message, hole winTeam = null) {
 		_gameState = GameState.End;
 
 		endgameUI.transform.Find("field").GetComponent<UnityEngine.UI.Text>().text = p_end_game_message;
-		CanvasGroupSwitcher(endgameUI, true);
 		AudioManager.Instance.PlaySound(AudioManager.AudioName.Laugh, 1);
+
+		if (winTeam == null) {
+			StartCoroutine(UIDelay(0));
+			
+		} else {
+			int delaySecond = 3;
+			StartCoroutine(UIDelay(delaySecond));
+			winTeam.EnableParticle(true);
+		}
+	}
+
+	public IEnumerator UIDelay(float p_delay_time) {
+		yield return new WaitForSeconds(p_delay_time);
+		CanvasGroupSwitcher(endgameUI, true);
 	}
 
 	public void AddScore(TeamHolder.Team p_team, int p_score) {
@@ -92,7 +106,7 @@ public class TeamDroperManager : MonoBehaviour {
 
 	private void Update() {
 		if (Input.GetKeyDown(KeyCode.Space))  {
-			GameOver("HELLO WORLD");
+			// GameOver("HELLO WORLD", Holes[0]);
 			// _camera._zoomState = (_camera._zoomState == CameraManager.ZoomState.ZoomOut) ? CameraManager.ZoomState.ZoomIn : CameraManager.ZoomState.ZoomOut;
 		}
 	}

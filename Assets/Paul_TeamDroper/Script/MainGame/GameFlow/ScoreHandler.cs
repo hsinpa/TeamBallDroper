@@ -41,7 +41,7 @@ public class ScoreHandler : MonoBehaviour {
 		if (p_team.score / (float)maxScore >= 1) {
 			//Game Over this team win;
 			string redColorCode = "#e14a36ff";
-			TeamDroperManager.instance.GameOver("<color="+redColorCode+"Team " + p_team._id +">\nWin!!");
+			TeamDroperManager.instance.GameOver("<color="+redColorCode+">Team " + p_team._id +"</color>\nWin!!");
 		}
 	}
 
