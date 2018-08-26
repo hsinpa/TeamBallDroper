@@ -54,7 +54,7 @@ public class TeamDroperManager : MonoBehaviour {
 		}
 
 		//Set Camera ZoomInPosition
-		_camera.SetUp(155, 13);
+		_camera.SetUp(100, 13);
 		GameStart();
 	}
 
@@ -89,7 +89,8 @@ public class TeamDroperManager : MonoBehaviour {
 
 	private void Update() {
 		if (Input.GetKeyDown(KeyCode.Space))  {
-			_camera._zoomState = (_camera._zoomState == CameraManager.ZoomState.ZoomOut) ? CameraManager.ZoomState.ZoomIn : CameraManager.ZoomState.ZoomOut;
+			GameStart();
+			// _camera._zoomState = (_camera._zoomState == CameraManager.ZoomState.ZoomOut) ? CameraManager.ZoomState.ZoomIn : CameraManager.ZoomState.ZoomOut;
 		}
 	}
 
