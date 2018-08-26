@@ -10,10 +10,32 @@ public class TeamHolder : MonoBehaviour {
 	[SerializeField]
 	FloorDetector[] _floorDetector;
 
-	public void SetUp() {
+	Vector3[] teamOriginalPos;
+	Transform _tranTeamHolder;
+
+	public void SetUp(Transform p_tranTeamHolder = null) {
 		for(int i = 0; i < _floorDetector.Length; i++) {
 			_floorDetector[i].RenewFloorColor();
 		}
+
+		//Reset team
+		if (p_tranTeamHolder != null)
+			_tranTeamHolder = p_tranTeamHolder;
+
+		if (_tranTeamHolder != null && p_tranTeamHolder != null) {			
+			if (teamOriginalPos == null) {
+				teamOriginalPos = new Vector3[_tranTeamHolder.childCount];
+				for (int i = 0; i < _tranTeamHolder.childCount; i++) {
+					teamOriginalPos[i] = _tranTeamHolder.GetChild(i).position;
+				}
+			} else {
+				for (int i = 0; i < _tranTeamHolder.childCount; i++) {
+					_tranTeamHolder.GetChild(i).position = teamOriginalPos[i];
+				}
+
+			}
+		}
+
 	}
 
 	public Team FindTeam(Player p_player) {

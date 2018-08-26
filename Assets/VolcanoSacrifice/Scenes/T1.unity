@@ -2236,7 +2236,7 @@ MonoBehaviour:
   Holes:
   - {fileID: 727382196}
   - {fileID: 15494921}
-  teamHolder: {fileID: 1284460906}
+  teamHolderTransform: {fileID: 1284460906}
   endgameUI: {fileID: 698894719}
 --- !u!114 &315920305
 MonoBehaviour:
@@ -2829,7 +2829,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 394850624}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 315920304}
+        m_MethodName: GameStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &394850624
