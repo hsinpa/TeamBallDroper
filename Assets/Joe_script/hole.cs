@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using CliffLeeCL;
 public class hole : MonoBehaviour {
     public int fraction;
     [SerializeField]
@@ -27,6 +27,9 @@ public class hole : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
 	{
+
+    	AudioManager.Instance.PlaySound(AudioManager.AudioName.Splash, 1);
+
         BallStat ballState = other.GetComponent<BallStat>();
         if (ballState == null ) return;
         Color color = ballState.color;

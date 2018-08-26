@@ -606,6 +606,7 @@ Transform:
   - {fileID: 2016910261}
   - {fileID: 53405167}
   - {fileID: 1596605736}
+  - {fileID: 1687946148}
   - {fileID: 770095690}
   - {fileID: 724205604}
   - {fileID: 391449722}
@@ -632,7 +633,7 @@ Transform:
   - {fileID: 421587626}
   - {fileID: 1359025855}
   - {fileID: 13431651}
-  - {fileID: 1687946148}
+  - {fileID: 224107170}
   - {fileID: 252205001}
   - {fileID: 345056454}
   - {fileID: 582359378}
@@ -655,7 +656,6 @@ Transform:
   - {fileID: 668698189}
   - {fileID: 380480355}
   - {fileID: 1224686092}
-  - {fileID: 224107170}
   - {fileID: 1653833216}
   - {fileID: 1844329269}
   - {fileID: 878427831}
@@ -988,7 +988,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &118282945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1016,7 +1016,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!4 &120491397 stripped
 Transform:
@@ -1913,7 +1913,7 @@ Transform:
   m_LocalScale: {x: 2.8070154, y: 0.734611, z: 2.8070164}
   m_Children: []
   m_Father: {fileID: 105298784}
-  m_RootOrder: 75
+  m_RootOrder: 53
   m_LocalEulerAnglesHint: {x: 0, y: 0.69000006, z: 0}
 --- !u!1001 &251420549
 Prefab:
@@ -2128,6 +2128,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4000010702317224, guid: a082d0f34409cf54898f92b3e070758a,
     type: 2}
   m_PrefabInternal: {fileID: 1411862154}
+--- !u!114 &292016967 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114360397736187620, guid: 75255789a172c4527aa88f3b37b52f0f,
+    type: 2}
+  m_PrefabInternal: {fileID: 338773721}
+  m_Script: {fileID: 11500000, guid: ecc1cb1433097408284c551785b06a9d, type: 3}
 --- !u!1001 &305595120
 Prefab:
   m_ObjectHideFlags: 0
@@ -2192,6 +2198,7 @@ GameObject:
   - component: {fileID: 315920303}
   - component: {fileID: 315920304}
   - component: {fileID: 315920305}
+  - component: {fileID: 315920306}
   m_Layer: 0
   m_Name: Paul
   m_TagString: Untagged
@@ -2258,6 +2265,23 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &315920306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 315920302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6fd784f2cdc435a8631333b178c2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players:
+  - {fileID: 292016967}
+  - {fileID: 1573748343}
+  - {fileID: 1490511990}
+  - {fileID: 1028288794}
+  p: 0
 --- !u!1001 &323819206
 Prefab:
   m_ObjectHideFlags: 0
@@ -2466,6 +2490,20 @@ Prefab:
     - target: {fileID: 114360397736187620, guid: 75255789a172c4527aa88f3b37b52f0f,
         type: 2}
       propertyPath: num
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 54550225733550058, guid: 75255789a172c4527aa88f3b37b52f0f,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 114360397736187620, guid: 75255789a172c4527aa88f3b37b52f0f,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252257302084024, guid: 75255789a172c4527aa88f3b37b52f0f, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -11912,11 +11950,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc1cb1433097408284c551785b06a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  num: 3
-  moveSpeed: 50
+  num: 100
+  moveSpeed: 5000
   target: {fileID: 0}
   throwSpeed: 1000
   ahand: {fileID: 0}
+  throwSroud:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!65 &1028288795
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23694,18 +23737,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4467316403553228, guid: 34355ab17fe9bb84c8a56a693858b337, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 4.071654
-      objectReference: {fileID: 0}
-    - target: {fileID: 4467316403553228, guid: 34355ab17fe9bb84c8a56a693858b337, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 4.0716553
-      objectReference: {fileID: 0}
-    - target: {fileID: 4467316403553228, guid: 34355ab17fe9bb84c8a56a693858b337, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 4.0716534
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 34355ab17fe9bb84c8a56a693858b337, type: 2}
   m_IsPrefabParent: 0
@@ -23974,7 +24005,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1490511990
 MonoBehaviour:
@@ -23988,11 +24019,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc1cb1433097408284c551785b06a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  num: 2
-  moveSpeed: 50
+  num: 100
+  moveSpeed: 5000
   target: {fileID: 0}
   throwSpeed: 1000
   ahand: {fileID: 0}
+  throwSroud:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!65 &1490511991
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24619,7 +24655,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1558069512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24647,7 +24683,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &1560160587
 GameObject:
@@ -24735,11 +24771,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc1cb1433097408284c551785b06a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  num: 1
-  moveSpeed: 50
+  num: 100
+  moveSpeed: 5000
   target: {fileID: 0}
   throwSpeed: 1000
   ahand: {fileID: 0}
+  throwSroud:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!65 &1573748344
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25407,7 +25448,7 @@ Transform:
   m_LocalScale: {x: 2.6836708, y: 0.70233077, z: 2.6836708}
   m_Children: []
   m_Father: {fileID: 105298784}
-  m_RootOrder: 52
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 12.702001, y: 35.850002, z: -26.695002}
 --- !u!4 &1690719587 stripped
 Transform:
@@ -26523,7 +26564,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1844329265
 GameObject:
   m_ObjectHideFlags: 0

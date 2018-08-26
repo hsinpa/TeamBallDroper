@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using CliffLeeCL;
 
 public class PlayerMove : MonoBehaviour {
     public int num = 1;
@@ -39,6 +40,8 @@ public class PlayerMove : MonoBehaviour {
             transform.rotation = Quaternion.LookRotation(new Vector3(x, 0, y));
             //transform.position += new Vector3(x, 0, y) * Time.deltaTime*moveSpeed;
             rb.velocity = new Vector3(x, 0, y) * Time.deltaTime * moveSpeed;
+            AudioManager.Instance.PlaySound(AudioManager.AudioName.Footstep, 0.2f);
+
         }
 
 
@@ -50,6 +53,8 @@ public class PlayerMove : MonoBehaviour {
                 target.transform.parent = null;
                 target.AddForce((transform.forward+transform.up)*throwSpeed);
                 take = false;
+                AudioManager.Instance.PlaySound(AudioManager.AudioName.DropItem, 0.9f);
+
             }else{
                 if (target)
                 {
@@ -58,6 +63,7 @@ public class PlayerMove : MonoBehaviour {
                     target.transform.position = ahand.transform.position; 
                     target.transform.parent = transform;
                     target.isKinematic = true;
+                    AudioManager.Instance.PlaySound(AudioManager.AudioName.PickUp, 0.8f);
                 }
             }
         }

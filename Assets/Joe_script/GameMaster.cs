@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using CliffLeeCL;
 
 public class GameMaster : MonoBehaviour {
     public int Maxfraction = 15;
@@ -23,13 +24,14 @@ public class GameMaster : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        chack(teamA);
-        chack(teamB);
+        Check(teamA);
+        Check(teamB);
 
     }
 
 
-    void chack(hole p_hole){
+    void Check(hole p_hole){
+
         if (p_hole.newcolor == target)
         {
             // Debug.Log(p_hole.team._id);

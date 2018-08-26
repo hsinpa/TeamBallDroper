@@ -61,7 +61,7 @@ public class ScoreHandler : MonoBehaviour {
 			TeamDroperManager.instance._camera._zoomState = CameraManager.ZoomState.ZoomOut;
 			
 			//Pick team time end
-			SetUp(Time.time, 1);
+			SetUp(Time.time, 120);
 			TeamDroperManager.instance._gameState = TeamDroperManager.GameState.Start;
 			TeamDroperManager.instance._teamHolder.SetUp();
 		}

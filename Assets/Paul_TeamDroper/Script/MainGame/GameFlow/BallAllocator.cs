@@ -34,6 +34,7 @@ public class BallAllocator : MonoBehaviour {
 		if (Time.time > _gatePeriodTime) {
 			_gatePeriodTime = Time.time + gate_open_period;
 			GenerateBallInGroup();
+			Debug.Log("sound check");
 			AudioManager.Instance.PlaySound(AudioManager.AudioName.RockMultiple, 1);
 
 			//ReleaseBall(true);
@@ -78,7 +79,7 @@ public class BallAllocator : MonoBehaviour {
 
 		//Assign Random position
 		Vector3 boundSize = reshRenderer.bounds.size;
-		float yPos = p_index * gObject.transform.localScale.y + (playgroundHolder.position.y *0.9f);
+		float yPos = p_index * gObject.transform.localScale.y + (playgroundHolder.position.y *1f);
 		float xzOffSet = boundSize.x * 1.1f;
 		float xPos = Random.Range(playgroundHolder.transform.position.x + xzOffSet,  playgroundHolder.transform.position.x - xzOffSet ),
 			zPos = Random.Range(playgroundHolder.transform.position.z + xzOffSet,  playgroundHolder.transform.position.z - xzOffSet );
@@ -87,7 +88,7 @@ public class BallAllocator : MonoBehaviour {
 		gObject.transform.position = new Vector3(xPos, yPos, zPos);
 		// gObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 		//End 
-		gObject.GetComponent<Rigidbody>().AddForce(Vector3.down);
+		gObject.GetComponent<Rigidbody>().AddForce(Vector3.down * 10);
 		gMaterial.SetColor("_EmissionColor", blendColor);
 		gObject.GetComponent<BallStat>().color = blendColor;
 		reshRenderer.material = gMaterial;
