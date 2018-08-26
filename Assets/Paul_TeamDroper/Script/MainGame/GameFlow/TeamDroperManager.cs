@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using CliffLeeCL;
 public class TeamDroperManager : MonoBehaviour {
 	static TeamDroperManager _instance;
 
@@ -79,12 +79,15 @@ public class TeamDroperManager : MonoBehaviour {
 
 		endgameUI.transform.Find("field").GetComponent<UnityEngine.UI.Text>().text = p_end_game_message;
 		CanvasGroupSwitcher(endgameUI, true);
+		AudioManager.Instance.PlaySound(AudioManager.AudioName.Laugh, 1);
 	}
 
 	public void AddScore(TeamHolder.Team p_team, int p_score) {
 		if (_gameState != GameState.Start) return;
 		_ballAllocator.SetTargetGoalBall();
 		_scoreHandler.SetScoreToUI(p_team, p_score, true);
+
+		AudioManager.Instance.PlaySound(AudioManager.AudioName.ColorCorrect, 1);
 	}
 
 	private void Update() {

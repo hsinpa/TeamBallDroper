@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CliffLeeCL;
 
 public class BallAllocator : MonoBehaviour {
 	public Ball_STP ballStp;
@@ -33,6 +34,8 @@ public class BallAllocator : MonoBehaviour {
 		if (Time.time > _gatePeriodTime) {
 			_gatePeriodTime = Time.time + gate_open_period;
 			GenerateBallInGroup();
+			AudioManager.Instance.PlaySound(AudioManager.AudioName.RockMultiple, 1);
+
 			//ReleaseBall(true);
 		}
 
